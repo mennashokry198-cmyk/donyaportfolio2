@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Donya Sabry — Digital Academic Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fff;--card:#fff;--text:#3d2f36;--muted:#9a7f8b;--soft:#fff0f5;--blush:#fbd5e3;--rose:#ec86ac;--rose-d:#d6588a;--beige:#fff5f9;--line:#fae3ec;--shadow:0 2px 12px rgba(236,134,172,.10)}
+html{scroll-behavior:smooth;scroll-padding-top:72px;height:100%}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:500;margin:0}
+a{color:var(--rose-d)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+section.alt{background:var(--beige)}
+.eyebrow{color:var(--rose);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+h2{font-size:2rem;margin:4px 0 24px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:24px}.head h2{margin-bottom:0}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);text-decoration:none}
+.links{display:flex;gap:4px}
+.links a{color:var(--muted);text-decoration:none;font-size:.9rem;padding:8px 12px;border-radius:999px;transition:.2s}
+.links a:hover{background:var(--soft);color:var(--rose-d)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;color:var(--text);font-size:1.5rem}
+@media(max-width:820px){.burger{display:block}.links{display:none;position:absolute;top:60px;left:0;right:0;background:#fff;flex-direction:column;padding:10px 20px 16px;border-bottom:1px solid var(--line)}.links.open{display:flex}.links a{padding:12px}}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--rose);background:var(--rose);color:#fff;font:500 .92rem Inter,sans-serif;cursor:pointer;text-decoration:none;transition:.2s}
+.btn:hover{background:var(--rose-d);transform:translateY(-1px)}
+.btn.ghost{background:#fff;color:var(--rose-d)}.btn.ghost:hover{background:var(--soft)}
+.btn.sm{min-height:36px;padding:0 14px;font-size:.82rem}
+.btn.danger{color:#b44a5f;border-color:var(--blush)}
+/* hero */
+.hero{padding:96px 0 88px;text-align:center;background:linear-gradient(180deg,#ffe3ee,#fff0f5 55%,#fff);border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(2.4rem,7vw,4rem);margin:10px 0}
+.hero p{margin:4px 0;color:var(--muted)}
+.hero .sub{margin:20px 0 32px;color:var(--rose-d);font-weight:500;font-size:1.02rem}
+.pill{display:inline-block;border:1px solid var(--blush);background:#fff;color:var(--rose-d);border-radius:999px;padding:4px 14px;font-size:.85rem;cursor:text}
+.pill[contenteditable]:focus{outline:2px solid var(--blush)}
+.hint{font-size:.72rem;color:#c9a3b3;margin-top:6px}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);transition:.25s;min-width:0}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(236,134,172,.18)}
+.card h3{font-size:1.15rem;margin-bottom:4px;overflow-wrap:anywhere}
+.meta{color:var(--muted);font-size:.82rem;display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 10px}
+.card p{margin:0 0 12px;font-size:.92rem;color:#6b5260;overflow-wrap:anywhere}
+.badge{display:inline-block;background:var(--soft);color:var(--rose-d);border:1px solid var(--blush);padding:2px 10px;border-radius:999px;font-size:.74rem;font-weight:500}
+.badge.done{background:#f3f8f1;color:#5b8a5a;border-color:#dcebd8}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.tags span{background:var(--beige);border-radius:8px;padding:2px 9px;font-size:.76rem;color:#8a6577}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.goal{display:flex;gap:12px;align-items:center;font-weight:500}
+.goal i{font-style:normal;width:34px;height:34px;border-radius:50%;background:var(--soft);color:var(--rose);display:grid;place-items:center;flex:none}
+.about p{max-width:720px;color:#6b5260;margin:0 0 36px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:36px 16px;border:1.5px dashed var(--blush);border-radius:18px;background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{background:var(--beige);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:.76rem;color:#7d5a6b;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* tasks */
+.tasks{display:flex;flex-direction:column;gap:12px}
+.task{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.task .main{flex:1;min-width:200px}
+.task.done{background:var(--beige)}.task.done h3{text-decoration:line-through;color:#c9a8b8}
+.check{width:26px;height:26px;border-radius:50%;border:2px solid var(--blush);background:#fff;cursor:pointer;flex:none;margin-top:2px;color:#fff;font-size:.8rem;display:grid;place-items:center;transition:.2s}
+.task.done .check{background:var(--rose);border-color:var(--rose)}
+/* files */
+.fileitem{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.ficon{width:44px;height:52px;border-radius:8px;background:var(--soft);border:1px solid var(--blush);color:var(--rose-d);display:grid;place-items:center;font-size:.64rem;font-weight:600;flex:none;text-transform:uppercase}
+.fileitem .info{flex:1;min-width:140px}
+.fileitem .info b{display:block;overflow-wrap:anywhere}
+input,select,textarea{font:inherit;color:inherit;width:100%;min-height:44px;padding:10px 14px;border:1px solid var(--blush);border-radius:12px;background:#fff}
+textarea{min-height:90px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--blush);border-color:var(--rose)}
+.search{max-width:260px}
+label{display:block;font-size:.8rem;color:var(--muted);margin:12px 0 4px}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(80,40,60,.30);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal.show{display:flex}
+.sheet{background:#fff;border-radius:20px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+.sheet h3{font-size:1.4rem;margin-bottom:8px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.frow{border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:var(--beige)}
+.frow .acts{margin-top:8px}
+.preview{max-width:100%;border-radius:12px;margin-top:10px}
+iframe.preview{width:100%;height:60vh;border:1px solid var(--line)}
+pre.preview{white-space:pre-wrap;background:var(--beige);padding:12px;max-height:50vh;overflow:auto;font-size:.8rem}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;padding:10px 18px;border-radius:999px;font-size:.85rem;opacity:0;pointer-events:none;transition:.3s;z-index:60;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+.contact{text-align:center}
+.contact .card{max-width:520px;margin:0 auto;text-align:left}
+.mail{display:inline-flex;align-items:center;gap:10px;font-size:1.05rem;margin-bottom:22px;text-decoration:none;font-weight:500}
+footer{background:#ffe9f1;border-top:1px solid var(--blush);text-align:center;padding:36px 20px;color:var(--muted);font-size:.9rem}
+footer b{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);font-weight:500}
+.admin-only{display:none!important}body.is-admin .admin-only{display:inline-flex!important}body.is-admin .hint.admin-only{display:block!important}
+.pill:not([contenteditable=true]){cursor:default}.check[disabled]{cursor:default}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap nav">
+  <a class="logo" href="#home">Donya Sabry</a>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+  <div class="links" id="links">
+    <a href="#home">Home</a><a href="#about">About Me</a><a href="#assignments">Assignments</a><a href="#tasks">Tasks</a><a href="#projects">Projects</a><a href="#files">Files</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="home"><div class="wrap">
+  <span class="eyebrow">Digital Academic Portfolio</span>
+  <h1>Donya Sabry</h1>
+  <p>Faculty of Computers and Information</p>
+  <p>Software Engineering Department</p>
+  <p style="margin-top:12px"><span class="pill" id="year" contenteditable="false" spellcheck="false">Academic Year</span></p>
+  <div class="hint admin-only">Click the academic year to edit it</div>
+  <p class="sub">Software Engineering Student • Creative Learner • Future Developer</p>
+  <a class="btn" href="#about">Explore My Portfolio</a>
+</div></header>
+
+<section id="about"><div class="wrap about">
+  <span class="eyebrow">Hello</span><h2>About Me</h2>
+  <p>I'm a Software Engineering student at the Faculty of Computers and Information. I'm learning programming, building my technical skills, and applying what I learn through academic projects. I enjoy turning ideas into working software, and I'm always curious to learn something new.</p>
+  <h3 style="font-size:1.4rem;margin-bottom:16px">My Goals</h3>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr))" id="goals"></div>
+</div></section>
+
+<section id="assignments" class="alt"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Coursework</span><h2>Assignments</h2></div><button class="btn admin-only" data-add="assignment">+ Add Assignment</button></div>
+  <div class="grid" id="list-assignment"></div>
+</div></section>
+
+<section id="tasks"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">To do</span><h2>Tasks</h2></div><button class="btn admin-only" data-add="task">+ Add Task</button></div>
+  <div class="tasks" id="list-task"></div>
+</div></section>
+
+<section id="projects" class="alt"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Work</span><h2>Projects</h2></div><button class="btn admin-only" data-add="project">+ Add Project</button></div>
+  <div class="grid" id="list-project"></div>
+</div></section>
+
+<section id="files"><div class="wrap">
+  <div class="head"><div><span class="eyebrow">Library</span><h2>Files</h2></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;flex:1;justify-content:flex-end"><input class="search" id="q" type="search" placeholder="Search files…"><button class="btn admin-only" data-add="file">+ Upload File</button></div></div>
+  <div class="grid" id="list-file"></div>
+</div></section>
+
+<section id="contact" class="alt contact"><div class="wrap">
+  <span class="eyebrow">Contact</span><h2>Get In Touch</h2>
+  <div class="card">
+    <a class="mail" href="mailto:qwrfbnu65@gmail.com"><span class="ficon" style="width:40px;height:40px;border-radius:50%;font-size:1.1rem">✉</span>qwrfbnu65@gmail.com</a>
+    <label>Name</label><input id="cn" autocomplete="name">
+    <label>Email</label><input id="ce" type="email" autocomplete="email">
+    <label>Message</label><textarea id="cm"></textarea>
+    <div style="margin-top:16px"><button class="btn" id="send">Send Message</button></div>
+    <div class="hint">This opens your email app with the message ready to send.</div>
+  </div>
+</div></section>
+
+<footer><b>Donya Sabry</b><br>Software Engineering Student<br><a href="mailto:qwrfbnu65@gmail.com">qwrfbnu65@gmail.com</a><br><span style="font-size:.8rem">My Digital Academic Portfolio</span><br><a href="#" id="adminlink" style="font-size:.72rem;color:#c9a3b3;text-decoration:none">Admin</a></footer>
+
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600)}
+
+// nav
+$('#burger').onclick=()=>$('#links').classList.toggle('open');
+$('#links').onclick=e=>{if(e.target.tagName==='A')$('#links').classList.remove('open')};
+
+// goals
+['Improve my programming skills','Build real-world projects','Improve my web development skills','Gain practical experience','Build a strong portfolio','Keep learning new technologies'].forEach(g=>{$('#goals').insertAdjacentHTML('beforeend',`<div class="card goal"><i>✦</i>${g}</div>`)});
+
+// ---------- Supabase configuration ----------
+// 1) Paste your own values from Supabase → Project Settings → API.
+// 2) Only the "anon / public" key goes here. NEVER put the service_role key in this file.
+const SUPABASE_URL='https://sxyworrdafdzovfzqmni.supabase.co';        // e.g. https://abcdxyz.supabase.co
+const SUPABASE_ANON_KEY='sb_publishable_VMIf95TPis7KBuvpRcAsEw_6wqw3jzm';
+const BUCKET='portfolio-files';
+const CONFIGURED=!/YOUR-/.test(SUPABASE_URL+SUPABASE_ANON_KEY);
+const sb=(CONFIGURED&&window.supabase)?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+
+let items=[],loaded=false,loadFailed=false,isAdmin=false;
+const uid=()=>(window.crypto&&crypto.randomUUID)?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return (c==='x'?r:(r&3|8)).toString(16)});
+const errMsg=e=>{const m=(e&&e.message)||'';return /row-level|not allowed|permission|jwt/i.test(m)?'Please sign in as admin first':'Something went wrong'+(m?' — '+m:'')};
+
+// ---------- data layer (Supabase Postgres + Storage) ----------
+async function load(){
+ if(!sb){loaded=true;render();return}
+ const {data,error}=await sb.from('items').select('*').order('created_at',{ascending:false});
+ if(error){console.error(error);loadFailed=true;loaded=true;render();return}
+ loadFailed=false;loaded=true;
+ items=(data||[]).map(r=>({...r,created:Date.parse(r.created_at),files:Array.isArray(r.files)?r.files:[]}));
+ render();
+}
+const safeName=n=>String(n).normalize('NFKD').replace(/[^\w.\-]+/g,'_').slice(-80)||'file';
+const fsize=f=>f.blob?f.blob.size:(f.size||0);
+const ftype=f=>f.blob?(f.blob.type||''):(f.type||'');
+// Saves one item: uploads new files to Storage, upserts the row, removes files that were deleted/replaced.
+async function persist(it,prevPaths){
+ const uploaded=[];
+ try{
+  for(const f of it.files){
+   if(!f.blob)continue;
+   const path=`${it.type}/${it.id}/${uid().slice(0,8)}-${safeName(f.orig||f.name)}`;
+   const {error}=await sb.storage.from(BUCKET).upload(path,f.blob,{contentType:f.blob.type||'application/octet-stream',upsert:false});
+   if(error)throw error;
+   uploaded.push(path);
+   f.path=path;f.size=f.blob.size;f.type=f.blob.type||'';
+   f.url=sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+  const row={id:it.id,type:it.type,name:it.name,subject:it.subject||null,description:it.description||null,date:it.date||null,status:it.status||null,tech:it.tech||null,link:it.link||null,github:it.github||null,
+   files:it.files.map(f=>({id:f.id,name:f.name,orig:f.orig,size:f.size,type:f.type,path:f.path,url:f.url}))};
+  const {data,error}=await sb.from('items').upsert(row).select('id');
+  if(error)throw error;
+  if(!data||!data.length)throw new Error('Not allowed');
+  it.files.forEach(f=>{delete f.blob});
+  const keep=new Set(it.files.map(f=>f.path));
+  const gone=(prevPaths||[]).filter(p=>p&&!keep.has(p));
+  if(gone.length)await sb.storage.from(BUCKET).remove(gone);
+ }catch(e){
+  if(uploaded.length)sb.storage.from(BUCKET).remove(uploaded).catch(()=>{});
+  throw e;
+ }
+}
+
+// ---------- config ----------
+const STATUS={assignment:['Not Started','In Progress','Submitted','Graded'],task:['Pending','Completed'],project:['In Progress','Completed']};
+const CFG={
+ assignment:{label:'Assignment',fields:[['name','Assignment name','text',1],['subject','Subject','text'],['description','Short description','area'],['date','Date','date'],['status','Status','status']],files:1},
+ task:{label:'Task',fields:[['name','Task name','text',1],['subject','Subject','text'],['description','Description','area'],['date','Due date','date'],['status','Status','status']]},
+ project:{label:'Project',fields:[['name','Project name','text',1],['description','Description','area'],['tech','Technologies (comma separated)','text'],['date','Date','date'],['link','Project link','url'],['github','GitHub link','url'],['status','Status','status']],files:1},
+ file:{label:'File',fields:[['name','File name','text',1],['description','Short description','area']],files:1,single:1}
+};
+const fmtDate=d=>d?new Date(d+'T00:00').toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'';
+const ext=n=>(n.split('.').pop()||'').slice(0,4);
+const size=b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';
+const safeUrl=u=>/^https?:\/\//i.test(u)?u:(u?'https://'+u:'');
+
+// ---------- rendering ----------
+function chips(it){return (it.files&&it.files.length)?`<div class="chips">${it.files.map(f=>`<span class="chip">📎 ${esc(f.name)}</span>`).join('')}</div>`:''}
+function acts(it){return `<div class="acts"><button class="btn sm ghost" data-a="view" data-id="${it.id}">View</button>${isAdmin?`<button class="btn sm ghost" data-a="edit" data-id="${it.id}">Edit</button><button class="btn sm ghost danger" data-a="del" data-id="${it.id}">Delete</button>`:''}</div>`}
+function emptyMsg(t){
+ if(!CONFIGURED)return 'The database is not connected yet — add your Supabase URL and key (see README).';
+ if(loadFailed)return 'Could not load content. Please refresh the page.';
+ if(!loaded)return 'Loading…';
+ if(t==='file'&&$('#q').value)return 'No files match your search.';
+ return isAdmin?`Nothing here yet — click “+ Add ${CFG[t].label}” to get started.`:'Nothing here yet — check back soon.';
+}
+function render(){
+ for(const t of ['assignment','project','task','file']){
+  const box=$('#list-'+t);let list=items.filter(i=>i.type===t).sort((a,b)=>b.created-a.created);
+  if(t==='file'){const q=$('#q').value.trim().toLowerCase();if(q)list=list.filter(i=>(i.name+' '+(i.description||'')+' '+(i.files[0]?.name||'')).toLowerCase().includes(q))}
+  if(!list.length){box.innerHTML=`<div class="empty">${emptyMsg(t)}</div>`;continue}
+  box.innerHTML=list.map(it=>{
+   if(t==='assignment')return `<div class="card"><h3>${esc(it.name)}</h3><div class="meta">${it.subject?`<span>${esc(it.subject)}</span>`:''}${it.date?`<span>${fmtDate(it.date)}</span>`:''}<span class="badge">${esc(it.status)}</span></div>${it.description?`<p>${esc(it.description)}</p>`:''}${chips(it)}${acts(it)}</div>`;
+   if(t==='project')return `<div class="card"><h3>${esc(it.name)}</h3><div class="meta">${it.date?`<span>${fmtDate(it.date)}</span>`:''}<span class="badge">${esc(it.status)}</span></div>${it.description?`<p>${esc(it.description)}</p>`:''}${it.tech?`<div class="tags">${it.tech.split(',').filter(x=>x.trim()).map(x=>`<span>${esc(x.trim())}</span>`).join('')}</div>`:''}<div class="meta">${it.link?`<a href="${esc(safeUrl(it.link))}" target="_blank" rel="noopener">Project link ↗</a>`:''}${it.github?`<a href="${esc(safeUrl(it.github))}" target="_blank" rel="noopener">GitHub ↗</a>`:''}</div>${chips(it)}${acts(it)}</div>`;
+   if(t==='task'){const d=it.status==='Completed';return `<div class="card task ${d?'done':''}"><button class="check" data-a="toggle" data-id="${it.id}" aria-label="Mark completed" ${isAdmin?'':'disabled'}>${d?'✓':''}</button><div class="main"><h3>${esc(it.name)}</h3><div class="meta">${it.subject?`<span>${esc(it.subject)}</span>`:''}${it.date?`<span>Due ${fmtDate(it.date)}</span>`:''}<span class="badge ${d?'done':''}">${esc(it.status)}</span></div>${it.description?`<p style="margin:0">${esc(it.description)}</p>`:''}</div>${isAdmin?`<div class="acts" style="margin:0"><button class="btn sm ghost" data-a="edit" data-id="${it.id}">Edit</button><button class="btn sm ghost danger" data-a="del" data-id="${it.id}">Delete</button></div>`:''}</div>`}
+   const f=it.files[0];return `<div class="card"><div class="fileitem"><div class="ficon">${esc(f?ext(f.name):'file')}</div><div class="info"><b>${esc(it.name)}</b><span class="meta" style="margin:0">${f?esc(f.name)+' · '+size(fsize(f)):''}</span></div></div>${it.description?`<p style="margin:10px 0 0">${esc(it.description)}</p>`:''}<div class="acts" style="margin-top:12px"><button class="btn sm ghost" data-a="view" data-id="${it.id}">View</button><button class="btn sm ghost" data-a="dl" data-id="${it.id}">Download</button>${isAdmin?`<button class="btn sm ghost" data-a="edit" data-id="${it.id}">Edit</button><button class="btn sm ghost danger" data-a="del" data-id="${it.id}">Delete</button>`:''}</div></div>`;
+  }).join('');
+ }
+}
+
+// ---------- modal ----------
+const modal=$('#modal'),sheet=$('#sheet');
+const openModal=h=>{sheet.innerHTML=h;modal.classList.add('show')};
+const closeModal=()=>{modal.classList.remove('show');sheet.innerHTML=''};
+modal.addEventListener('mousedown',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+async function saveFile(f){
+ let n=f.name;if(!/\.[a-z0-9]{1,5}$/i.test(n)&&f.orig&&f.orig.includes('.'))n+='.'+f.orig.split('.').pop();
+ try{
+  let blob=f.blob;
+  if(!blob){const r=await fetch(f.url);if(!r.ok)throw new Error('download failed');blob=await r.blob()}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=n;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+ }catch(er){toast('Could not download this file')}
+}
+async function openFile(f,target){
+ const url=f.blob?URL.createObjectURL(f.blob):f.url,t=ftype(f);let h='';
+ if(t.startsWith('image/'))h=`<img class="preview" src="${esc(url)}" alt="">`;
+ else if(t==='application/pdf')h=`<iframe class="preview" src="${esc(url)}"></iframe>`;
+ else if(t.startsWith('text/')||/\.(txt|md|json|csv|js|py|java|html|css)$/i.test(f.name)){
+  try{const x=f.blob?await f.blob.text():await (await fetch(url)).text();h=`<pre class="preview">${esc(x.slice(0,20000))}</pre>`}catch(e){h=`<p class="meta">Could not load a preview. Use Download instead.</p>`}}
+ else h=`<p class="meta">This file type can't be previewed in the browser. Use Download to open it on your device.</p>`;
+ target.innerHTML=`<div class="meta"><b>${esc(f.name)}</b><span>${size(fsize(f))}</span></div>${h}`;
+}
+
+// file rows editor (shared by edit and view). ro = read-only (visitors)
+function fileEditor(box,files,onChange,single,previewBox,ro){
+ const draw=()=>{
+  box.innerHTML=files.map((f,i)=>`<div class="frow"><div style="display:flex;gap:10px;align-items:center"><div class="ficon" style="width:36px;height:42px">${esc(ext(f.orig||f.name))}</div><div style="flex:1;min-width:0">${ro?`<b style="display:block;overflow-wrap:anywhere">${esc(f.name)}</b>`:`<input data-i="${i}" data-r="1" value="${esc(f.name)}" aria-label="File name">`}<div class="meta" style="margin:2px 0 0">${size(fsize(f))}</div></div></div><div class="acts"><button type="button" class="btn sm ghost" data-fa="open" data-i="${i}">Open</button><button type="button" class="btn sm ghost" data-fa="dl" data-i="${i}">Download</button>${ro?'':`<label class="btn sm ghost" style="margin:0;color:var(--rose-d);cursor:pointer">Replace<input type="file" data-rep="${i}" hidden></label><button type="button" class="btn sm ghost danger" data-fa="rm" data-i="${i}">Delete</button>`}</div></div>`).join('')||'<div class="meta">No files attached yet.</div>';
+ };
+ draw();
+ box.onclick=async e=>{const b=e.target.closest('[data-fa]');if(!b)return;const i=+b.dataset.i,a=b.dataset.fa;
+  if(a==='open'){if(previewBox)openFile(files[i],previewBox);else toast('Save first, then open from View')}
+  if(a==='dl')saveFile(files[i]);
+  if(a==='rm'){if(confirm('Delete this file?')){files.splice(i,1);draw();onChange()}}};
+ box.onchange=e=>{const t=e.target;
+  if(t.dataset.rep!==undefined){const f=t.files[0];if(!f)return;const o=files[+t.dataset.rep];o.blob=f;o.orig=f.name;draw();onChange();toast('File replaced')}
+  else if(t.dataset.r){onChange(false)}};
+ box.oninput=e=>{if(e.target.dataset.r){files[+e.target.dataset.i].name=e.target.value;onChange(true)}};
+ return {add(list){for(const f of list){if(single)files.length=0;files.push({id:uid(),name:f.name,orig:f.name,blob:f})}draw();onChange()},draw};
+}
+
+function form(type,orig){
+ if(!isAdmin){toast('Please sign in as admin first');return}
+ const c=CFG[type],isNew=!orig,prevPaths=isNew?[]:orig.files.map(f=>f.path);
+ const it=orig?{...orig,files:orig.files.map(f=>({...f}))}:{id:uid(),type,status:STATUS[type]?.[0],files:[]};
+ const fh=c.fields.map(([k,l,t,req])=>{
+  const v=esc(it[k]||'');
+  if(t==='area')return `<label>${l}</label><textarea data-k="${k}">${v}</textarea>`;
+  if(t==='status')return `<label>${l}</label><select data-k="${k}">${STATUS[type].map(s=>`<option ${it[k]===s?'selected':''}>${s}</option>`).join('')}</select>`;
+  return `<label>${l}${req?' *':''}</label><input data-k="${k}" type="${t==='url'?'text':t}" value="${v}" ${t==='url'?'placeholder="https://"':''}>`}).join('');
+ openModal(`<h3>${isNew?'Add':'Edit'} ${c.label}</h3>${fh}${c.files?`<label>${c.single?'File':'Attached files'}</label><div id="fe"></div><label class="btn sm ghost" style="margin-top:8px;cursor:pointer">${c.single?'Choose file':'+ Upload files'}<input type="file" id="fi" ${c.single?'':'multiple'} hidden></label>`:''}<div class="acts" style="margin-top:22px;justify-content:flex-end"><button class="btn ghost" id="cx">Cancel</button><button class="btn" id="sv">Save</button></div>`);
+ let ed;if(c.files){ed=fileEditor($('#fe'),it.files,()=>{},c.single);$('#fi').onchange=e=>{ed.add([...e.target.files]);if(c.single&&!$('[data-k=name]').value&&it.files[0])$('[data-k=name]').value=it.files[0].name.replace(/\.[^.]+$/,'');e.target.value=''}}
+ $('#cx').onclick=closeModal;
+ $('#sv').onclick=async e=>{
+  const btn=e.currentTarget;
+  sheet.querySelectorAll('[data-k]').forEach(el=>it[el.dataset.k]=el.value.trim());
+  if(!it.name){toast('Please enter a name');return}
+  if(c.single&&!it.files.length){toast('Please choose a file');return}
+  btn.disabled=true;btn.textContent='Saving…';btn.style.opacity='.7';
+  try{await persist(it,prevPaths);await load();closeModal();toast('Saved')}
+  catch(err){console.error(err);toast(errMsg(err));btn.disabled=false;btn.textContent='Save';btn.style.opacity=''}
+ };
+}
+function view(it){
+ const c=CFG[it.type];
+ const rows=c.fields.filter(([k])=>k!=='name'&&it[k]).map(([k,l])=>`<div class="meta" style="display:block;margin:6px 0"><b>${l.replace(/ \(.*\)/,'')}:</b> ${k==='date'?fmtDate(it[k]):(k==='link'||k==='github')?`<a href="${esc(safeUrl(it[k]))}" target="_blank" rel="noopener">${esc(it[k])}</a>`:esc(it[k])}</div>`).join('');
+ openModal(`<h3>${esc(it.name)}</h3>${rows}${c.files?`<label>${c.single?'File':'Attached files'}</label><div id="fe"></div><div id="pv"></div>`:''}<div class="acts" style="margin-top:20px;justify-content:flex-end"><button class="btn ghost" id="cx">Close</button></div>`);
+ $('#cx').onclick=closeModal;
+ if(c.files){
+  let saved=it.files.map(f=>f.path);
+  const commit=async()=>{try{await persist(it,saved);saved=it.files.map(f=>f.path);render()}catch(err){console.error(err);toast(errMsg(err));await load()}};
+  fileEditor($('#fe'),it.files,minor=>{if(!minor&&isAdmin)commit()},c.single,$('#pv'),!isAdmin);
+  if(c.single&&it.files[0])openFile(it.files[0],$('#pv'));
+ }
+}
+
+// ---------- events ----------
+document.addEventListener('click',async e=>{
+ const add=e.target.closest('[data-add]');if(add)return form(add.dataset.add);
+ const b=e.target.closest('[data-a]');if(!b||b.disabled)return;
+ const it=items.find(x=>x.id===b.dataset.id);if(!it)return;
+ const a=b.dataset.a;
+ if(!isAdmin&&['edit','del','toggle'].includes(a))return;
+ if(a==='edit')form(it.type,it);
+ if(a==='view')view(it);
+ if(a==='dl'&&it.files[0])saveFile({...it.files[0],name:it.name+(it.files[0].orig.includes('.')?'.'+it.files[0].orig.split('.').pop():'')});
+ if(a==='toggle'){
+  const prev=it.status;it.status=prev==='Completed'?'Pending':'Completed';render();
+  try{await persist(it,it.files.map(f=>f.path))}catch(err){it.status=prev;render();toast(errMsg(err))}
+ }
+ if(a==='del'&&confirm('Delete "'+it.name+'"? This cannot be undone.')){
+  try{
+   const {data,error}=await sb.from('items').delete().eq('id',it.id).select('id');
+   if(error)throw error;if(!data||!data.length)throw new Error('Not allowed');
+   const paths=it.files.map(f=>f.path).filter(Boolean);
+   if(paths.length)sb.storage.from(BUCKET).remove(paths).catch(()=>{});
+   items=items.filter(x=>x!==it);render();toast('Deleted');
+  }catch(err){console.error(err);toast(errMsg(err))}
+ }
+});
+$('#q').oninput=render;
+
+// ---------- admin sign-in (Supabase Auth) ----------
+const yr=$('#year');
+async function refreshAdmin(){
+ let ok=false;
+ if(sb){try{const {data:{session}}=await sb.auth.getSession();if(session){const {data,error}=await sb.rpc('is_admin');ok=!error&&data===true}}catch(e){}}
+ isAdmin=ok;document.body.classList.toggle('is-admin',ok);
+ yr.contentEditable=ok?'true':'false';yr.title=ok?'Click to edit':'';
+ $('#adminlink').textContent=ok?'Sign out':'Admin';
+ render();
+}
+function loginForm(){
+ openModal(`<h3>Admin sign in</h3><label>Email</label><input id="ae" type="email" autocomplete="username"><label>Password</label><input id="ap" type="password" autocomplete="current-password"><div class="acts" style="margin-top:22px;justify-content:flex-end"><button class="btn ghost" id="cx">Cancel</button><button class="btn" id="si">Sign in</button></div>`);
+ $('#cx').onclick=closeModal;
+ const go=async()=>{
+  const email=$('#ae').value.trim(),password=$('#ap').value;
+  if(!email||!password){toast('Enter your email and password');return}
+  const btn=$('#si');btn.disabled=true;
+  const {error}=await sb.auth.signInWithPassword({email,password});
+  btn.disabled=false;
+  if(error){toast('Sign-in failed: '+error.message);return}
+  await refreshAdmin();
+  if(!isAdmin){await sb.auth.signOut();toast('This account is not the portfolio admin');return}
+  closeModal();toast('Signed in');
+ };
+ $('#si').onclick=go;
+ sheet.onkeydown=e=>{if(e.key==='Enter')go()};
+ $('#ae').focus();
+}
+$('#adminlink').onclick=async e=>{
+ e.preventDefault();
+ if(!sb){toast('Connect Supabase first (see README)');return}
+ if(isAdmin){await sb.auth.signOut();await refreshAdmin();toast('Signed out')}else loginForm();
+};
+
+// academic year (editable by admin, stored in the database for everyone)
+async function loadYear(){
+ if(!sb)return;
+ try{const {data}=await sb.from('settings').select('value').eq('key','academic_year').maybeSingle();if(data&&data.value)yr.textContent=data.value}catch(e){}
+}
+yr.onblur=async()=>{
+ if(!isAdmin)return;
+ const v=yr.textContent.trim()||'Academic Year';yr.textContent=v;
+ const {error}=await sb.from('settings').upsert({key:'academic_year',value:v});
+ if(error)toast('Could not save the academic year');
+};
+yr.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();yr.blur()}};
+// contact
+$('#send').onclick=()=>{
+ const n=$('#cn').value.trim(),m=$('#cm').value.trim(),em=$('#ce').value.trim();
+ if(!m){toast('Please write a message');return}
+ const body=encodeURIComponent(m+'\n\n— '+n+(em?' ('+em+')':''));
+ location.href='mailto:qwrfbnu65@gmail.com?subject='+encodeURIComponent('Portfolio message from '+(n||'a visitor'))+'&body='+body;
+};
+// init
+render();
+if(sb){
+ sb.auth.onAuthStateChange(()=>{setTimeout(refreshAdmin,0)});
+ refreshAdmin();
+ loadYear();
+ load();
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!modal.classList.contains('show'))load()});
+}else{loaded=true;render()}
+</script>
+</body>
+</html>
